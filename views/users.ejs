@@ -1,11 +1,13 @@
 <%# We have an array of users coming in, show each users first and last name, and their dog %>
 <%# Link to the dog show page %>
-
+<h1 class='text-center'>Users</h1>
+<ul class='list-group list-group-flush text-center' >
 <% users.forEach( user => { %>
-  <p>
+<li class='list-group-item' >
   <a href='/users/<%=user.id %>' >
     <%= user.firstName %> <%= user.lastName %> 
   </a>
     has <%= user.pets.length %> animal<%= user.pets.length === 1 ? '' :'s'%>.
-  </p>
+  </li>
 <% }) %>
+</ul>

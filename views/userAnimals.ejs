@@ -1,8 +1,10 @@
-<h2>Animals for <%= user.firstName %></h2>
+<h1 class='text-center' >Animals for <%= user.firstName %></h1>
 <% for (let animal of animals) { %>
-  <p>
-    <%= animal.species %>
-    named 
-    <%= animal.name %>
-  </p>
+  <div class='text-center card mx-auto' style="width: 18rem;">
+    <p class='mx-auto card-body' style="width: 200px;">
+      <%= animal.species %>
+      named 
+      <%= animal.name %>
+    </p>
+  </div>
 <% } %>

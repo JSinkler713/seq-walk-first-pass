@@ -1,4 +1,8 @@
-<h2><%= user.firstName %> <%= user.lastName %>'s page</h2>
-<p>I am <%=user.age%> years old</p>
-<a href='/users/<%= user.id %>/animals' >See my animals</a>
+<div class='card'>
+  <div class='card-body'>
+    <h2 class='card-title'><%= user.firstName %> <%= user.lastName %>'s page</h2>
+    <p class='card-text'>I am <%=user.age%> years old</p>
+    <a class='btn btn-success' href='/users/<%= user.id %>/animals' >See my animals</a>
+  </div>
+</div>
 
