@@ -6,5 +6,8 @@
       named 
       <%= animal.name %>
     </p>
+    <form action='/pets/<%= animal.id %>/?_method=DELETE' method='POST'>
+      <button type='submit' class='btn btn-danger'>Delete</button>
+    </form>
   </div>
 <% } %>
