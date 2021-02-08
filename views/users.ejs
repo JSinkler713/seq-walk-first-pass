@@ -1,0 +1,6 @@
+<%# We have an array of users coming in, show each users first and last name, and their dog %>
+<%# Link to the dog show page %>
+
+<% users.forEach( user => { %>
+<p><%= user.firstName %> <%= user.lastName %> has <%= user.pets.length %> animal<%= user.pets.length === 1 ? '' :'s'%>.</p>
+<% }) %>
