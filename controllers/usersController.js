@@ -15,6 +15,22 @@ router.get('/', (req, res)=> {
      res.render('users', { users })
   });
 })
+router.get('/:id/animals', (req, res)=> {
+  db.pet.findAll({ where: { userId: req.params.id }})
+    .then((foundAnimals)=> {
+      console.log(foundAnimals) // will be an array
+      res.render('userAnimals', { animals: foundAnimals })
+  })
+})
+router.get('/:id', (req, res)=> {
+  db.user.findOne({ where: { id: req.params.id }})
+    .then((foundUser)=> {
+      res.render('userShow', { user: foundUser })
+    })
+    .catch( err => {
+      console.log('err')
+    })
+})
 
 
 module.exports = router
