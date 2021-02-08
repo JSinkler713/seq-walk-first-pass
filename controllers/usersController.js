@@ -43,4 +43,16 @@ router.get('/:id', (req, res)=> {
     })
 })
 
+router.post('/addPet', (req, res)=> {
+  db.user.findOne({ where: {id: req.body.userId} })
+  .then((foundUser)=> {
+    foundUser.createPet({
+      name: req.body.petName,
+      species: req.body.species
+    }).then((createdPet)=> {
+      res.redirect(`/users/${req.body.userId}/animals`)
+    })
+  })
+})
+
 module.exports = router

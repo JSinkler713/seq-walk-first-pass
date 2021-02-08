@@ -5,4 +5,21 @@
     <a class='btn btn-success' href='/users/<%= user.id %>/animals' >See my animals</a>
   </div>
 </div>
+<div class='card'>
+  <div class='card-body'>
+    <form action='/users/addPet' method='POST'>
+      <div class="mb-3">
+        <label for="petName" class="form-label">Pet name</label>
+        <input type="text" class="form-control" id="petName" aria-describedby="petName" name="petName">
+        <div class="form-text">We'll never share your pet with anyone</div>
+      </div>
+      <div class="mb-3">
+        <label for="species" class="form-label">Species/Breed</label>
+        <input type="text" name="species" class="form-control" id="species">
+        <input type="hidden" name="userId" class="form-control" id="userId" value="<%= user.id %>">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
 
