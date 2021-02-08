@@ -2,5 +2,10 @@
 <%# Link to the dog show page %>
 
 <% users.forEach( user => { %>
-<p><%= user.firstName %> <%= user.lastName %> has <%= user.pets.length %> animal<%= user.pets.length === 1 ? '' :'s'%>.</p>
+  <p>
+  <a href='/users/<%=user.id %>' >
+    <%= user.firstName %> <%= user.lastName %> 
+  </a>
+    has <%= user.pets.length %> animal<%= user.pets.length === 1 ? '' :'s'%>.
+  </p>
 <% }) %>
