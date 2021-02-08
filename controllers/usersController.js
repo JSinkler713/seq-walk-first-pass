@@ -3,9 +3,6 @@ const router = express.Router()
 // bring in db
 const db = require('../models')
 
-// index route for users, show all users
-// even though this is a '/' we have already routed through the controller
-// so the whole path is '/users/'
 router.get('/', (req, res)=> {
   // get all users
   db.user.findAll({ 
@@ -15,19 +12,27 @@ router.get('/', (req, res)=> {
      res.render('users', { users })
   });
 })
+
 router.get('/:id/animals', (req, res)=> {
-  db.pet.findAll({ 
-    where: { userId: req.params.id },
-    include: db.user
+  db.user.findOne({ 
+    where: { id: req.params.id },
+    include: [db.pet] // property of .pets on user
   })
-    .then((foundAnimals)=> {
-      console.log(foundAnimals[0].user.firstName) // will be an array
-      res.render('userAnimals', { 
-        animals: foundAnimals,
-        user: foundAnimals[0].user
-      })
+    .then((user)=> {
+      if (user.pets.length > 0) {
+        res.render('userAnimals', { 
+          animals: user.pets,
+          user: user
+        })
+      } else {
+        res.render('userAnimals', {
+          animals: [],
+          user: user
+        })
+      }
   })
 })
+
 router.get('/:id', (req, res)=> {
   db.user.findOne({ where: { id: req.params.id }})
     .then((foundUser)=> {
@@ -37,6 +42,5 @@ router.get('/:id', (req, res)=> {
       console.log('err')
     })
 })
-
 
 module.exports = router
