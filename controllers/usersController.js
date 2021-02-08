@@ -16,10 +16,16 @@ router.get('/', (req, res)=> {
   });
 })
 router.get('/:id/animals', (req, res)=> {
-  db.pet.findAll({ where: { userId: req.params.id }})
+  db.pet.findAll({ 
+    where: { userId: req.params.id },
+    include: db.user
+  })
     .then((foundAnimals)=> {
-      console.log(foundAnimals) // will be an array
-      res.render('userAnimals', { animals: foundAnimals })
+      console.log(foundAnimals[0].user.firstName) // will be an array
+      res.render('userAnimals', { 
+        animals: foundAnimals,
+        user: foundAnimals[0].user
+      })
   })
 })
 router.get('/:id', (req, res)=> {
