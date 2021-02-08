@@ -1,7 +1,8 @@
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
-const usersController= require('./controllers/usersController')
-const animalsController = require('./controllers/animalsController')
+//const usersController= require('./controllers/usersController')
+//const animalsController = require('./controllers/animalsController')
+const controller = require('./controllers')
 
 // 3 - App set up
 const app = express();
@@ -12,8 +13,8 @@ app.use(ejsLayouts);
 app.use(express.urlencoded({ extended: false }));
 
 // 5 - Routes (controllers)
-app.use('/users', animalsController)
-app.use('/users', usersController)
+app.use('/users', controller.users)
+app.use('/pets', controller.pets)
 
 
 const PORT = process.env.PORT || 8000;
