@@ -26,14 +26,15 @@ const db = require('./models')
 
 
 /* Using the .include method, include the pets associated with a user */
-// db.user.findAll({ 
-//   where: {firstName: 'James'},
-//   include: [db.pet] //now a .pets is included on eah returned user
-// }).then(function(users) {
-//   //log the first user, and the first pet on that user
-//   console.log(users[0].pets[0].get())
-//   //load pets for this user
-// });
+db.user.findAll({ 
+  where: {firstName: 'James'},
+  include: [db.pet] //now a .pets is included on eah returned user
+}).then(function(users) {
+  //log the first user, and the first pet on that user
+  console.log(users[0].pets[0].get())
+  //load pets for this user
+});
 
-
+// THE RAW SQL QUERY EQUIVALENT
+// SELECT * FROM "users" AS "user" LEFT OUTER JOIN "pets" AS "pets" ON "user"."id" = "pets"."userId" WHERE "user"."firstName" = 'James';
 
